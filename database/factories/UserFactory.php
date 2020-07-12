@@ -33,10 +33,23 @@ $factory->define(App\Thread::class, function ($faker) {
         'user_id' => function () {
             return factory('App\User')->create()->id;
         },
+        'channel_id' => function () {
+            return factory('App\Channel')->create()->id;
+        },
         'title' => $faker->sentence,
-        'body' => $faker->paragraph,
+        'body'  => $faker->paragraph
     ];
 });
+
+$factory->define(App\Channel::class, function ($faker) {
+    $name = $faker->word;
+
+    return [
+        'name' => $name,
+        'slug' => $name
+    ];
+});
+
 
 $factory->define(App\Reply::class, function ($faker) {
     return [
@@ -46,6 +59,6 @@ $factory->define(App\Reply::class, function ($faker) {
         'user_id' => function () {
             return factory('App\User')->create()->id;
         },
-        'body' => $faker->paragraph,
+        'body'  => $faker->paragraph
     ];
 });
